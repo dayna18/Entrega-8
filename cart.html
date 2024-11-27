@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito de Compras</title>
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="css/cart.css"> <!-- Estilos personalizados para cart -->
+ 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" 
+  referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 justify-content-between">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html">Categorías</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>
+          <li class="nav-item ml-auto"> <!--boton-menú desplegable-->
+            <li class="nav-item dropdown ml-auto">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span id="nombreUsuario">Bienvenido</span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" id="miPerfil">Mi Perfil</a></li>
+                <li><a class="dropdown-item" id="miCarrito" href="cart.html">Mi carrito <span id="cart-count" class="badge bg-secondary">0</span></a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="login.html">Cerrar Sesión</a></li>
+              </ul>
+            </li>
+            
+  
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav> 
+   
+        <div class="container" id="Compra">
+            <div class="row">
+                <div class="col-md-6" id="Columna1"> <!-- Esta es la primera columna -->
+                    <div id="carrito-container" >
+                      <!-- Las filas de los productos se insertarán aquí con JavaScript -->
+                    </div>
+                  </div>
+      <!-- Tipo de envio del producto -->
+    
+      <div class="container col-md-6" id="Columna3">
+        <h2 class="my-4 text-center text-sm-start">
+          <i class="bi bi-truck"></i> Tipo de envío
+        </h2>
+        <select class="form-select" id="select-delivery" required>
+          <option value="Standard">
+            Standard, llega a tu casa en 12 a 15 días (+5%)
+          </option>
+          <option value="Express">
+            Express, llega a tu casa en 5 a 8 días (+7%)
+          </option>
+          <option value="Premium">
+            Premium, llega a tu casa en 2 a 5 días (+15%)
+          </option>
+        </select>
+      
+
+      <!-- Dirección de envío de los productos en el carrito -->
+      <div class="row my-4">
+        <div class="col-12 my-4 text-center text-sm-start">
+          <h3><i class="bi bi-pin-map"></i> Dirección de envío</h3>
+        </div>
+        <div class="col-12 d-md-flex flex-column">
+          <form>
+
+            <div class="row gx-4 gy-4">
+              <div class="col-12 col-sm-6">
+                <div class="form-group text-center text-sm-start">
+                  <label for="nombreDepart">Departamento <i class="fa-solid fa-route"></i></label>
+                  <input type="text" class="form-control my-3" id="nombreDepart"
+                    placeholder="Ingrese el departamento donde reside" />
+
+                  <div class="align-self-center mt-3 mb-5 text-danger d-none" id="nombreDeCalleAlertContainer">
+                    <span id="nombredepart">Debe seleccionar un nombre de departamento</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6">
+                <div class="form-group text-center text-sm-start">
+                  <label for="nombreLocalidad"> Localidad <i class="fa-solid fa-map-pin"></i></label>
+                  <input type="text" class="form-control my-3" id="nombreLocalidad"
+                    placeholder="Ingrese el nombre de su localidad" />
+
+                  <div class="align-self-center mt-3 mb-5 text-danger d-none" id="nombreLocalidadAlertContainer">
+                    <span id="nombreLocalidadAlert">Debe seleccionar un nombre de localidad </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          <div class="row gx-4 gy-4">
+            <div class="col-12 col-sm-6">
+              <div class="form-group text-center text-sm-start">
+                <label for="nombreCalle"> Calle <i class="fa-solid fa-road"></i></label>
+                <input type="text" class="form-control my-3" id="nombreCalle"
+                  placeholder="Ingrese el nombre de su calle" />
+
+                <div class="align-self-center mt-3 mb-5 text-danger d-none" id="calleNombreAlertContainer">
+                  <span id="calleNombreAlert">Debe seleccionar una calle </span>
+                </div>
+              </div>
+            </div>
+              <div class="col-12 col-sm-6">
+                <div class="form-group text-center text-sm-start">
+                  <label for="numeroPuerta"> Número de puerta <i class="fa-solid fa-door-open"></i></label>
+                  <input type="number" class="form-control my-3" id="numeroPuerta"
+                    placeholder="Ingrese el número de puerta" />
+
+                  <div class="align-self-center mt-3 mb-5 text-danger d-none" id="numeroDePuertaAlertContainer">
+                    <span id="numeroAlert">Debe seleccionar un número de puerta</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6">
+              <div class="form-group text-center text-sm-start">
+                <label for="esquinaNombre" >Nombre de la Esquina<i class="fa-solid fa-diamond-turn-right"></i></label>
+                <input type="text" class="form-control my-3" id="esquinaNombre"
+                  placeholder="Ingrese el nombre de su esquina" />
+
+                <div class="align-self-center mt-3 mb-5 text-danger d-none" id="nombreDeEsquinaAlertContainer">
+                  <span id="nombreDeEsquinaAlert">Debe seleccionar un nombre de Esquina</span>
+                </div>
+              </div>
+            </div>
+          </form> 
+        </div>
+      </div>
+<!-- Forma de pago de los productos en el carrito -->
+<div class="Forma">
+<h4 class="my-5"><i class="bi bi-wallet2"></i> Forma de pago</i></h4>
+<section class="d-flex w-100 gap-4 mt-5">
+  <div class="w-100">
+    <button id="checkout-select-btn" type="button" class="m-1 btn btn-dark" data-bs-toggle="modal" data-bs-target="#contidionsModal"
+      style="max-width: 30%">
+      Seleccionar
+    </button>
+  </div>
+</div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="contidionsModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Forma de pago <i class="bi bi-wallet2"></i></h5>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <form>
+                <div class="col-12">
+                  <div class="input-group-text text-center gap-3">
+                    <input type="radio" name="formaDePago" value="credit" class="my-3" id="credito" />
+                    <label for="credito">Tarjeta de Crédito o Débito
+                      <i class="bi bi-credit-card"></i></label>
+                  </div>
+                </div>
+                <hr/>
+                <div class="row gx-4 gy-4">
+                  <div class="col-12 col-sm-6">
+                    <div class="form-group text-center text-sm-start">
+                      <label for="numeroCredito">Número de Tarjeta <i class="bi bi-credit-card-2-front"></i>
+                      </label>
+                      <input type="text" class="form-control my-3" id="numeroCredito"
+                        placeholder="Ingrese número de tarjeta" disabled />
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <div class="form-group text-center text-sm-start">
+                      <label for="codigoSeguridad">Código de seguridad <i class="bi bi-lock"></i></label>
+                      <input type="number" class="form-control my-3" id="codigoSeguridad"
+                        placeholder="Ingrese código de seguridad" disabled />
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <div class="form-group text-center text-sm-start">
+                      <label for="vencimiento">Vencimiento <br />
+                        <small>(MM/AA) </small></label>
+                      <input type="month" class="form-control my-3" id="vencimiento"
+                        placeholder="Ingrese la fecha de vencimiento" disabled />
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="input-group-text text-center gap-3">
+                      <input type="radio" class="my-3" name="formaDePago" value="bank" id="transferencia" />
+                      <label for="transferencia">Transferencia bancaria
+                        <i class="bi bi-bank"></i></label>
+                    </div>
+                  </div>
+                  <hr/>
+                  <div class="col-12">
+                    <div class="form-group text-center text-sm-start">
+                      <label for="numeroCuenta">Número de cuenta <br>
+                        <small>(Destinatario)</small></label>
+                      <input type="number" class="form-control my-3" id="numeroCuenta"
+                        placeholder="Ingrese el número de cuenta" disabled />
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+    </div>
+    <div class="col-md-12" id="Columna2">
+      <div class="contenido2" id="Contenido2">
+        <h1>Resumen de compra</h1>
+        
+        <div class="d-flex flex-column align-items-end mt-3">
+          <div id="costos" class="summary" style="align-self: flex-start; margin-top: -20px;">
+            <br>
+            <div id="subtotalUSD">Subtotal (USD): $0</div>
+            <div id="subtotalUYU">Subtotal (UYU): $0</div>
+            <br>
+            <div id="costoEnvioUSD">Costo de envío (USD): $0</div>
+            <div id="costoEnvioUYU">Costo de envío (UYU): $0</div>
+            <hr>
+            <div id="totalUSD">Total (USD): $0</div>
+            <div id="totalUYU">Total (UYU): $0</div>
+          </div>
+
+          <div class="text-center mt-4 w-100">
+            <button id="checkout-btn" class="btn">Finalizar Compra</button>
+          </div>
+        </div>
+      </div>
+    </div>
+                </div>
+                </div> 
+            </div>
+            </div>
+            
+    
+  <footer class="text-muted mt-5">
+      <div class="container">
+        <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jóvenes a Programar</a></p>
+      </div>
+    </footer>
+  
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/cart.js"></script> <!-- Archivo JS para manejar la lógica del carrito -->
+  </body>
+
+</html>
+
+
+
+
+
+
+
+
